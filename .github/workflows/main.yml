@@ -71,6 +71,19 @@ jobs:
     - run: cargo clippy --no-deps --all-features --target wasm32-unknown-unknown -p wasm-bindgen-benchmark -- -D warnings
     - run: for i in examples/*/; do cd "$i"; cargo +stable clippy --no-deps --all-features --target wasm32-unknown-unknown -- -D warnings || exit 1; cd ../..; done
 
+  # Run `cargo check` on the minimum supported Rust version
+  # The toolchain version here should match the `rust-version` in Cargo.toml
+  msrv:
+    name: Check (MSRV)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.60
+      - name: Use predefined lockfile
+        run: cp Cargo.lock.MSRV Cargo.lock
+      # Ignore internal crates for MSRV
+      - run: cargo check --locked --all --exclude '*-tests' --exclude sample
+
   test_wasm_bindgen:
     name: "Run wasm-bindgen crate tests (unix)"
     runs-on: ubuntu-latest
