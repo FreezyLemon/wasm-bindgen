@@ -14,7 +14,7 @@ Easy support for interacting between JS and Rust.
 edition = "2018"
 
 # When MSRV is 1.64 or higher, use [workspace.package] instead.
-# When updating MSRV: Also update the `msrv` job in .github/workflows/main.yml.
+# When updating MSRV: Also update the README and the `msrv` job in .github/workflows/main.yml.
 rust-version = "1.60"
 
 [package.metadata.docs.rs]

@@ -108,6 +108,25 @@ You can find general documentation about using Rust and WebAssembly together
 - [web-sys](https://docs.rs/web-sys)
 - [wasm-bindgen-futures](https://docs.rs/wasm-bindgen-futures)
 
+## Minimum supported Rust version (MSRV)
+
+The `wasm-bindgen` crates require a Rust version of 1.60 or higher to compile.
+
+The MSRV may be increased if features available in newer toolchains are considered
+very useful or necessary. Any change in MSRV will result in a new patch release.
+
+If you have problems building `wasm-bindgen` on your installed version of Rust,
+it is possible that the automatically selected dependency versions are incompatible
+with your installed toolchain. There are some ways to solve these incompatibilities:
+
+- If you have access to a nightly toolchain, running `cargo update -Zmsrv-policy`
+  will try to update your lockfile to the newest crate versions that are compatible
+  with the MSRV.
+- Otherwise, the file `Cargo.lock.MSRV` that is included in this repository is known
+  to compile on the current MSRV (and regularly checked by CI tools). You can rename it
+  to `Cargo.lock` and then run `cargo build` to use the same dependency versions as
+  the CI tooling. If that doesn't work, please file an issue.
+
 ## License
 
 This project is licensed under either of
