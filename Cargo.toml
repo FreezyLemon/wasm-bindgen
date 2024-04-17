@@ -12,7 +12,9 @@ description = """
 Easy support for interacting between JS and Rust.
 """
 edition = "2018"
-rust-version = "1.57"
+
+# When MSRV is 1.64 or higher, use [workspace.package] instead.
+rust-version = "1.60"
 
 [package.metadata.docs.rs]
 features = ["serde-serialize"]
